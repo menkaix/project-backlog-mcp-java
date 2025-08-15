@@ -11,6 +11,7 @@ public class Task {
     private String title;
     private String description;
     private String status;
+    private String projectCode;
 
     public Task() {
     }
@@ -52,4 +53,13 @@ public class Task {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getProjectCode() {
+        return projectCode;
+    }
+
+    public void setProjectCode(String projectCode) {
+        this.projectCode = projectCode;
+    }
+
 }

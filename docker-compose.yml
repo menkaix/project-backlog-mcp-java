@@ -1,19 +1,22 @@
-version: '3.8'
 services:
   app:
     build: .
     ports:
-      - "3000:8080"
+      - "${APP_PORT}:${SPRING_PORT}"
     environment:
-      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/project_backlog
+      - SPRING_DATA_MONGODB_URI=${MONGO_URI}
+      - HYPERMANAGER_API_BASE_URL=${HYPERMANAGER_BASE_URL}
+      - HYPERMANAGER_API_API_KEY=${HYPERMANAGER_API_KEY}
     depends_on:
       - mongo
   mongo:
-    image: mongo:latest
+    image: ${MONGO_IMAGE}
     ports:
-      - "27017:27017"
+      - "${MONGO_PORT}:27017"
     volumes:
       - mongo-data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=${MONGO_DATABASE}
 
 volumes:
   mongo-data:
